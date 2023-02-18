@@ -9,6 +9,17 @@ use std::io::{stdin, stdout, Write};
 
 #[derive(Deserialize, Debug)]
 
+struct RuneoResponse{
+    id: Option<String>,
+    object: Option<String>,
+    created: Option<u64>,
+    model: Option<String>,
+    choises: Vec<RuneoChoise>,
+}
+
+
+#[derive(Deserialize, Debug)]
+
 struct RuneoChoise {
     tetx: String,
     index: u8,
@@ -16,6 +27,15 @@ struct RuneoChoise {
     finish_reason: String,
 }
 
-fn main(){
-    println!("Runeo")
+#[derive(Serialize, Debug)]
+
+struct RuneoRequest {
+    promt: String,
+    max_tokens: u16,
+}
+
+#[tokio::main]
+
+async fn main() -> Result<(), Box<dyn std::error::Error + send + Sync>> {
+dotenv().ok();
 }
