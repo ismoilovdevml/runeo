@@ -44,24 +44,24 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
 
     let token: String = env::var("TOKEN").unwrap();
 
-    let auth_header_val = format!("Bearer {}", token);
+    let auth_header_val = format!("{}", token);
 
     println!("{esc}c", esc = 27 as char);
 
     loop {
-        print!("> ");
+        print!("runeo=> ");
         stdout().flush().unwrap();
-        let mut user_text = String::new();
+        let mut runeo_input = String::new();
 
         stdin()
-            .read_line(&mut user_text)
+            .read_line(&mut runeo_input)
             .expect("Xatolik");
         println!("");
 
         let sp = Spinner::new(&Spinners::Dots12, "\t\tAqlli Terminalchaman :)".into());
 
         let runeo_request = RuneoRequest {
-            prompt: format!("{} {}", preamble, user_text),
+            prompt: format!("{} {}", preamble, runeo_input),
             max_tokens: 1000,
         };
 
