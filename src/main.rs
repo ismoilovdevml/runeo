@@ -37,5 +37,42 @@ struct RuneoRequest {
 #[tokio::main]
 
 async fn main() -> Result<(), Box<dyn std::error::Error + send + Sync>> {
-dotenv().ok();
+    dotenv().ok();
+
+    let https = HttpsConnector::new();
+
+    let client = Client::builder().build(https);
+
+    let uri = "https://api.openai.com/v1/engines/davinci-codex/completions";
+
+    let preamble = "Salom! Men sizga qanday yordam bera olaman.";
+
+    let token: String = env::var("TOKEN").unwrap();
+
+    let auth_header_val = format!("Token: {}", token);
+
+    println!("{esc}c", esc = 27 as char)
+
+    loop {
+        print!{">"};
+        stdout().flush().unwrap();
+        let mut user_text = String::new();
+
+        stdin()
+            .read_line(&mut user_text)
+            .expect("Xatolik");
+            println!("");
+
+        let sp = Spinner::new(&Spinners::Dots12, "\t\tAqqli terminalchaman".into());
+        let runeo_request = RuneoRequest{
+            promt: format!("{} {}", preamble, user_text),
+            max_tokens: 1000,
+        };
+
+        
+
+    }
+
+    Ok(())
+
 }
