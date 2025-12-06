@@ -1,1 +1,22 @@
+# Build artifacts
 /target
+
+# Environment variables (contains secrets!)
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cargo lock for binaries is usually committed, but uncomment if needed
+# Cargo.lock
+
+# Debug
+*.log
